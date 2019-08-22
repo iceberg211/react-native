@@ -4,6 +4,7 @@ import {createBottomTabNavigator, createStackNavigator} from 'react-navigation';
 import HomeScreen from '../pages/home';
 import SettingsScreen from '../pages/settingsScreen';
 import Mine from '../pages/mine';
+import {Icon} from '@ant-design/react-native';
 
 const TabNavigator = createBottomTabNavigator(
   {
@@ -37,4 +38,3 @@ const TabNavigator = createBottomTabNavigator(
 );
 
 export default TabNavigator;
-

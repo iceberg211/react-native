@@ -23,13 +23,13 @@ import {
   DebugInstructions,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
-import Footer from './src/test';
+// import Footer from './src/test';
 
 const App = () => {
   return (
     <Fragment>
       <StatusBar barStyle="dark-content" />
-      <Footer />
+      <Text>1231231</Text>
     </Fragment>
   );
 };

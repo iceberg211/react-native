@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {Text, View} from 'react-native';
 
-export class ExploreContainer extends Component {
+class ExploreContainer extends Component {
   render() {
     return (
       <View>

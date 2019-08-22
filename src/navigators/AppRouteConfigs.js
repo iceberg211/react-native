@@ -1,19 +1,13 @@
 import React from 'react';
 import {createBottomTabNavigator, createAppContainer} from 'react-navigation';
-import HomeScreen from './pages/home';
-import SettingsScreen from './pages/settingsScreen';
-import Mine from './pages/mine';
+import {connect} from 'react-redux';
 import {
   reduxifyNavigator,
   createReactNavigationReduxMiddleware,
 } from 'react-navigation-redux-helpers';
-import {connect} from 'react-redux';
-
-// 路由中间件结合
-const middleware = createReactNavigationReduxMiddleware(
-  'root',
-  state => state.nav,
-);
+import SettingsScreen from './pages/settingsScreen';
+import HomeScreen from './pages/home';
+import Mine from './pages/mine';
 
 // 聚合路由
 const App = reduxifyNavigator(AppRouteConfigs, 'root');

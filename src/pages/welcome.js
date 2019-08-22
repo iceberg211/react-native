@@ -1,11 +1,25 @@
 import React, {Component} from 'react';
 import {Text, View} from 'react-native';
 
-export class Welcome extends Component {
+class Welcome extends Component {
+  state = {
+    time: 3,
+  };
+
+  componentDidMount() {
+    this.timer = setTimeout(() => {
+      this.props.navigation.navigate('homePage');
+    }, 3000);
+  }
+
+  componentWillMount() {
+    clearTimeout(this.timer);
+  }
+
   render() {
     return (
       <View>
-        <Text> textInComponent </Text>
+        <Text> Welcome {this.state.time}</Text>
       </View>
     );
   }

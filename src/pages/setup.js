@@ -5,7 +5,7 @@ export class Setup extends Component {
   render() {
     return (
       <View>
-        <Text> textInComponent </Text>
+        <Text> Setup </Text>
       </View>
     );
   }

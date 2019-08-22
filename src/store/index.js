@@ -1,22 +1,22 @@
-/* global */
 import {init} from '@rematch/core';
 import createLoadingPlugin from '@rematch/loading';
 import * as models from '../models';
-
 const loadingPlugin = createLoadingPlugin({});
 
-const configureStore = () => {
-  const store = init({
+const initializeStore = (initialState = {}) => {
+  return init({
     models,
     redux: {
-      middlewares: [],
+      initialState,
+      devtoolOptions: {
+        name: 'react-native',
+      },
+      // middlewares: [reactNavigationReduxMiddleware],
+      // combineReducers: reducers =>
+      //   combineReducers({router: navReducer, ...reducers}),
     },
     plugins: [loadingPlugin],
   });
-
-  const {dispatch} = store;
-
-  return {store, dispatch};
 };
 
-export default configureStore;
+export default initializeStore;

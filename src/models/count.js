@@ -1,5 +1,5 @@
-export const count = {
-  // name: 'home',
+export default  {
+  name: 'count',
   state: 0, // initial state
   reducers: {
     // handle state changes with pure functions
