@@ -1,22 +1,38 @@
 import React from 'react';
-import {createBottomTabNavigator, createAppContainer} from 'react-navigation';
-import {connect} from 'react-redux';
 import {
-  reduxifyNavigator,
-  createReactNavigationReduxMiddleware,
-} from 'react-navigation-redux-helpers';
-import SettingsScreen from './pages/settingsScreen';
-import HomeScreen from './pages/home';
-import Mine from './pages/mine';
+  createAppContainer,
+  createStackNavigator,
+  createSwitchNavigator,
+} from 'react-navigation';
 
-// 聚合路由
-const App = reduxifyNavigator(AppRouteConfigs, 'root');
+import Welcome from '../pages/welcome';
+import Index from '../pages/index';
+import ExploreContainer from '../pages/ExploreContainer';
 
-const mapStateToProps = state => ({
-  state: state.nav,
+const InitNavigator = createStackNavigator({
+  // welcomePage: Welcome,
+  welcomePage: {
+    screen: Welcome,
+    navigationOptions: {
+      tabBarLabel: '我的',
+    },
+  },
 });
 
-const AppWithNavigationState = connect(mapStateToProps)(App);
-const Root = () => <AppWithNavigationState />;
+const MainNavigator = createStackNavigator({
+  index: Index,
+  detailPage: ExploreContainer,
+});
 
-export default Root;
+// 链接初始化和项目主路由文件
+export default createAppContainer(
+  createSwitchNavigator(
+    {
+      init: InitNavigator,
+      main: MainNavigator,
+    },
+    {
+      initialRouteName: 'init',
+    },
+  ),
+);

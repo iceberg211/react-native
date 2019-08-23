@@ -1,14 +1,16 @@
 import React, {Component} from 'react';
 import {Provider} from 'react-redux';
+import {StatusBar} from 'react-native';
 import initializeStore from './store';
-import AppNavigator from './navigators/AppNavigator';
-import {Text, View, StyleSheet, FlatList, ScrollView} from 'react-native';
+import Root from './navigators/AppNavigator';
+
+StatusBar.setBarStyle('light-content', true);
 
 export default class App extends Component {
   render() {
     return (
       <Provider store={initializeStore()}>
-        <AppNavigator />
+        <Root />
       </Provider>
     );
   }

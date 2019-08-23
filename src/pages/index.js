@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {Text, View, StyleSheet, FlatList} from 'react-native';
 import {Carousel, Icon} from '@ant-design/react-native';
+import TabNavigator from '../navigators/tabNavigators';
 
-class HomeScreen extends Component {
+class IndexContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {chosenDate: new Date()};
@@ -18,12 +19,8 @@ class HomeScreen extends Component {
   }
 
   render() {
-    return (
-      <View>
-        <Text>home</Text>
-      </View>
-    );
+    return <TabNavigator />;
   }
 }
 
-export default HomeScreen;
+export default IndexContainer;

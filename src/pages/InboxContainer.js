@@ -3,7 +3,7 @@ import {View, Text, StyleSheet} from 'react-native';
 import {createMaterialTopTabNavigator} from 'react-navigation';
 import SavedContainer from './SavedContainer';
 import ProfileContainer from './ProfileContainer';
-import NavigationUtil from '../navigators/NavigationUtil';
+// import NavigationUtil from '../navigators/NavigationUtil';
 
 export default class InboxContainer extends Component {
   tabNavigation() {
@@ -13,7 +13,7 @@ export default class InboxContainer extends Component {
     });
   }
   render() {
-    NavigationUtil.navigator = this.props.navigator;
+    // NavigationUtil.navigator = this.props.navigator;
     return this.tabNavigation();
   }
 }

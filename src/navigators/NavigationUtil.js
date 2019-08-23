@@ -1,4 +1,10 @@
+/**
+ * 全局导航跳转工具类 by CrazyCodeBoy
+ */
 export default class NavigationUtil {
+  constructor(navigation) {
+    this.navigate = navigation;
+  }
   /**
    * 跳转到指定页面
    * @param params 要传递的参数
@@ -7,6 +13,7 @@ export default class NavigationUtil {
   static goPage(params, page) {
     const navigation = NavigationUtil.navigation;
     if (!navigation) {
+      console.log('NavigationUtil.navigation can not be null');
       return;
     }
     navigation.navigate(page, {

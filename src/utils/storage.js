@@ -1,42 +1,38 @@
 import {AsyncStorage} from 'react-native';
 
-function clear() {
-  return AsyncStorage.clear();
-}
+export default class storage {
+  static clear() {
+    return AsyncStorage.clear();
+  }
+  static get(key, defaultValue = null) {
+    return AsyncStorage.getItem(key).then(value =>
+      value !== null ? JSON.parse(value) : defaultValue,
+    );
+  }
 
-function get(key, defaultValue = null) {
-  return AsyncStorage.getItem(key).then(value =>
-    value !== null ? JSON.parse(value) : defaultValue,
-  );
-}
+  static async set(key, value) {
+    try {
+      return await AsyncStorage.setItem(key, JSON.stringify(value));
+    } catch (error) {
+      console.log(console.error);
+    }
+  }
 
-function set(key, value) {
-  return AsyncStorage.setItem(key, JSON.stringify(value));
-}
+  static remove(key) {
+    return AsyncStorage.removeItem(key);
+  }
 
-function remove(key) {
-  return AsyncStorage.removeItem(key);
-}
-
-function multiGet(...keys) {
-  return AsyncStorage.multiGet([...keys]).then(stores => {
-    const data = {};
-    stores.forEach((result, i, store) => {
-      data[store[i][0]] = JSON.parse(store[i][1]);
+  static multiGet(...keys) {
+    return AsyncStorage.multiGet([...keys]).then(stores => {
+      const data = {};
+      stores.forEach((result, i, store) => {
+        data[store[i][0]] = JSON.parse(store[i][1]);
+      });
+      return data;
     });
-    return data;
-  });
-}
+  }
 
-function multiRemove(...keys) {
-  return AsyncStorage.multiRemove([...keys]);
+  static multiRemove(...keys) {
+    return AsyncStorage.multiRemove([...keys]);
+  }
 }
-
-export default {
-  clear,
-  get,
-  set,
-  remove,
-  multiGet,
-  multiRemove,
-};

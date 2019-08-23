@@ -7,9 +7,10 @@ class Welcome extends Component {
   };
 
   componentDidMount() {
+    console.log(this.props);
     this.timer = setTimeout(() => {
-      this.props.navigation.navigate('homePage');
-    }, 3000);
+      this.props.navigation.navigate('index');
+    }, 1000);
   }
 
   componentWillMount() {

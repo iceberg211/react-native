@@ -1,48 +1,24 @@
-import React from 'react';
+import React, {PureComponent} from 'react';
+import {BackHandler} from 'react-native';
+import {connect} from 'react-redux';
 import {
-  createAppContainer,
-  createStackNavigator,
-  createBottomTabNavigator,
-  createSwitchNavigator,
-} from 'react-navigation';
+  createReduxContainer,
+  createReactNavigationReduxMiddleware,
+  createNavigationReducer,
+} from 'react-navigation-redux-helpers';
+import {NavigationActions} from 'react-navigation';
+import AppNavigator from './AppRouteConfigs';
 
-import Welcome from '../pages/welcome';
-import HomePage from '../pages/home';
-import ExploreContainer from '../pages/ExploreContainer';
-
-const InitNavigator = createStackNavigator({
-  welcomePage: Welcome,
-});
-
-const MainNavigator = createStackNavigator({
-  homePage: HomePage,
-  detailPage: ExploreContainer,
-});
-
-// 链接初始化和项目主路由文件
-export default createAppContainer(
-  createSwitchNavigator(
-    {
-      init: InitNavigator,
-      main: MainNavigator,
-    },
-    {
-      initialRouteName: 'init',
-    },
-  ),
+export const reactNavigationReduxMiddleware = createReactNavigationReduxMiddleware(
+  state => state.nav,
 );
 
-// export const routerReducer = createNavigationReducer(RootNavigator);
+export const routerReducer = createNavigationReducer(AppNavigator);
 
-// export const routerMiddleware = createReactNavigationReduxMiddleware(
-//   'root',
-//   state => state.router,
-// );
+const App = createReduxContainer(AppNavigator);
 
-// const AppWithNavigationState = createReduxContainer(RootNavigator, 'root');
+const mapStateToProps = state => ({
+  state: state.nav,
+});
 
-// const mapStateToProps = state => ({
-//   router: state.router,
-// });
-
-// export default connect(mapStateToProps)(AppWithNavigationState);
+export default connect(mapStateToProps)(App);
