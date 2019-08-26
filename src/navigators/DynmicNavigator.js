@@ -4,7 +4,6 @@ import {Icon} from '@ant-design/react-native';
 import SavedContainer from '../pages/SavedContainer';
 import ProfileContainer from '../pages/ProfileContainer';
 import TripsContainer from '../pages/TripsContainer';
-import NavigationUtil from '../pages/navigators/NavigationUtil';
 
 const TABS = {
   //在这里配置页面的路由

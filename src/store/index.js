@@ -1,12 +1,21 @@
 import {init} from '@rematch/core';
 import createLoadingPlugin from '@rematch/loading';
-import * as models from '../models';
+import createRematchPersist from '@rematch/persist';
 import {combineReducers} from 'redux';
-const loadingPlugin = createLoadingPlugin({});
+import immerPlugin from '@rematch/immer';
+import * as models from '../models';
 import {
   routerReducer,
   reactNavigationReduxMiddleware,
 } from '../navigators/AppNavigator';
+
+const persistPlugin = createRematchPersist({
+  whitelist: [''],
+  throttle: 5000,
+  version: 1,
+});
+
+const loadingPlugin = createLoadingPlugin({});
 
 const initializeStore = (initialState = {}) => {
   return init({
@@ -20,7 +29,7 @@ const initializeStore = (initialState = {}) => {
       combineReducers: reducers =>
         combineReducers({nav: routerReducer, ...reducers}),
     },
-    plugins: [loadingPlugin],
+    plugins: [loadingPlugin, persistPlugin, immerPlugin],
   });
 };
 

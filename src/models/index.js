@@ -1,4 +1,4 @@
-import count from './count';
-import example from './example';
+import home from './home';
+import theme from './theme';
 
-export {count, example};
+export {home, theme};

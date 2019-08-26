@@ -7,7 +7,6 @@ class Welcome extends Component {
   };
 
   componentDidMount() {
-    console.log(this.props);
     this.timer = setTimeout(() => {
       this.props.navigation.navigate('index');
     }, 1000);

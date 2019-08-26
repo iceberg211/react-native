@@ -3,7 +3,6 @@ import {Image, ScrollView, View, Text} from 'react-native';
 import {List} from '@ant-design/react-native';
 const Item = List.Item;
 const Brief = Item.Brief;
-
 export class Mime extends Component {
   render() {
     return (
@@ -12,7 +11,7 @@ export class Mime extends Component {
         automaticallyAdjustContentInsets={false}
         showsHorizontalScrollIndicator={false}
         showsVerticalScrollIndicator={false}>
-        <Text>Mime</Text>
+        <List />
       </ScrollView>
     );
   }
