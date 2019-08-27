@@ -2,7 +2,10 @@ faq: react-navigation 需要依赖react-native-gesture-handler react-native-rean
 
 2. 如何调试
 
-通过 `adb shell input keyevent 82` 命令打开开发者菜单
+通过 `adb shell input keyevent 82` 命令打开虚拟开发者菜单
+
+通过进行真机调试`adb reverse tcp:8081 tcp:8081`
+
 
 使用chorme调试
 

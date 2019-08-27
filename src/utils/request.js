@@ -5,7 +5,6 @@
 import {extend} from 'umi-request';
 
 const request = extend({
-  prefix: 'http://202.96.155.121:8888',
   credentials: 'include', // 默认请求是否带上cookie
 });
 

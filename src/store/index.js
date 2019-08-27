@@ -29,10 +29,10 @@ const initializeStore = (initialState = {}) => {
       combineReducers: reducers =>
         combineReducers({
           nav: routerReducer,
-          ...reducers
+          ...reducers,
         }),
     },
-    plugins: [loadingPlugin, persistPlugin, immerPlugin],
+    plugins: [loadingPlugin, persistPlugin],
   });
 };
 

@@ -18,7 +18,9 @@ export default {
   effects: {
     async fetchIndex(payload) {
       const data = await fetchIndexData();
-      this.fetchIndexDataSuc(data.data);
+      if (data.data) {
+        this.fetchIndexDataSuc(data.data);
+      }
     },
   },
 };

@@ -1,13 +1,42 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet, FlatList, Image} from 'react-native';
+import {
+  Text,
+  View,
+  StyleSheet,
+  FlatList,
+  Image,
+  ActivityIndicator,
+} from 'react-native';
 import {connect} from 'react-redux';
-import {Carousel, Icon} from '@ant-design/react-native';
+import {
+  createMaterialTopTabNavigator,
+  createAppContainer,
+} from 'react-navigation';
+
+import {Card} from '@ant-design/react-native';
+
+const {Header, Body, Footer} = Card;
 
 const mapStateToProps = state => ({
-  home: state.home,
+  github: state.github,
+  isLoading: state.loading.effects.github.fetchPopular,
 });
 
-class HomeScreen extends Component {
+const PopulItem = ({data}) => (
+  <Card>
+    <Header title={data.name} />
+    <Body>
+      <View style={{height: 42}}>
+        <Text style={{marginLeft: 16}}>全称:{data.full_name}</Text>
+        <Text style={{marginLeft: 16}}>语言:{data.language}</Text>
+        <Text style={{marginLeft: 16}}>点赞数:{data.watchers}</Text>
+      </View>
+    </Body>
+    <Footer content="fork数" extra={data.forks} />
+  </Card>
+);
+
+class PopulaTab extends Component {
   constructor(props) {
     super(props);
     this.state = {chosenDate: new Date()};
@@ -15,16 +44,7 @@ class HomeScreen extends Component {
 
   componentDidMount() {
     const {dispatch} = this.props;
-    dispatch({type: 'home/fetchIndex'});
-  }
-  onHorizontalSelectedIndexChange(index) {
-    /* tslint:disable: no-console */
-    console.log('horizontal change to', index);
-  }
-
-  onVerticalSelectedIndexChange(index) {
-    /* tslint:disable: no-console */
-    console.log('vertical change to', index);
+    dispatch({type: 'github/fetchPopular'});
   }
 
   renderBanner = banners => {
@@ -36,28 +56,16 @@ class HomeScreen extends Component {
   };
 
   render() {
-    const {banner} = this.props.home;
-    console.log(this.props);
-
+    const {github, isLoading} = this.props;
+    const {react} = github;
     return (
       <View style={styles.wrapper}>
-        <Carousel autoplay infinite style={styles.carousel}>
-          {this.renderBanner(banner)}
-        </Carousel>
         <FlatList
-          data={[
-            {key: 'Devin'},
-            {key: 'Dan'},
-            {key: 'Dominic'},
-            {key: 'Jackson'},
-            {key: 'James'},
-            {key: 'Joel'},
-            {key: 'John'},
-            {key: 'Jillian'},
-            {key: 'Jimmy'},
-            {key: 'Julie'},
-          ]}
-          renderItem={({item}) => <Text style={styles.item}>{item.key}</Text>}
+          onEndReachedThreshold={0.5}
+          data={react}
+          renderItem={({item, index, separators}) => {
+            return <PopulItem key={item.id} data={item} />;
+          }}
         />
       </View>
     );
@@ -68,9 +76,6 @@ const styles = StyleSheet.create({
     display: 'flex',
   },
   carousel: {
-    // flexGrow: 1,
-    // alignItems: 'center',
-    // justifyContent: 'center',
     height: 150,
   },
   item: {
@@ -79,4 +84,5 @@ const styles = StyleSheet.create({
     height: 44,
   },
 });
-export default connect(mapStateToProps)(HomeScreen);
+
+export default connect(mapStateToProps)(PopulaTab);

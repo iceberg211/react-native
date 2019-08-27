@@ -1,4 +1,5 @@
-import home from './home';
+// import home from './home';
 import theme from './theme';
+import github from './github';
 
-export {home, theme};
+export {theme, github};
