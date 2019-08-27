@@ -27,7 +27,10 @@ const initializeStore = (initialState = {}) => {
       },
       middlewares: [reactNavigationReduxMiddleware],
       combineReducers: reducers =>
-        combineReducers({nav: routerReducer, ...reducers}),
+        combineReducers({
+          nav: routerReducer,
+          ...reducers
+        }),
     },
     plugins: [loadingPlugin, persistPlugin, immerPlugin],
   });
