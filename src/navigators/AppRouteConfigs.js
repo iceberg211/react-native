@@ -20,7 +20,12 @@ const InitNavigator = createStackNavigator({
 });
 
 const MainNavigator = createStackNavigator({
-  index: Index,
+  index: {
+    screen: Index,
+    navigationOptions: {
+      header: null,
+    },
+  },
   detailPage: ExploreContainer,
 });
 
