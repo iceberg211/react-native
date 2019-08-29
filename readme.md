@@ -16,3 +16,9 @@ faq: react-navigation 需要依赖react-native-gesture-handler react-native-rean
 
 
 5.主题换色
+
+
+6.如何处理物理返回键？
+
+
+7.webview

@@ -13,12 +13,12 @@ export default {
     fetchPopularSuc(state, {items, name}) {
       return {
         ...state,
-        react: items,
+        [name]: items,
       };
     },
   },
   effects: {
-    async fetchPopular(payload = {name: 'react'}) {
+    async fetchPopular(payload) {
       const {name} = payload;
       try {
         const data = await fetchPopularService(payload);
