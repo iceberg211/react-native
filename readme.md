@@ -22,3 +22,16 @@ faq: react-navigation 需要依赖react-native-gesture-handler react-native-rean
 
 
 7.webview
+
+
+8.如何适配全面屏？
+
+1. 启动图，需要自定义
+2. 安全区域safeView
+
+
+
+9. 热更新
+
+
+10. 打包

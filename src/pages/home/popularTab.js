@@ -9,7 +9,7 @@ import {
   ActivityIndicator,
 } from 'react-native';
 import {connect} from 'react-redux';
-
+import {Carousel} from '@ant-design/react-native';
 import {Card} from '@ant-design/react-native';
 
 const {Header, Body, Footer} = Card;
@@ -37,12 +37,9 @@ class PopulaTab extends PureComponent {
   }
 
   componentDidMount() {
-    const {dispatch} = this.props;
-    dispatch({
-      type: 'github/fetchPopular',
-      payload: {
-        name: this.state.name,
-      },
+    const {fetchPopular} = this.props;
+    fetchPopular({
+      name: this.state.name,
     });
   }
 
@@ -72,12 +69,17 @@ class PopulaTab extends PureComponent {
     // const {name} = this.state;
     let data = github[tabLabel];
 
+    console.log(isLoading);
     if (!data) {
       data = [];
     }
 
     return (
       <View style={styles.wrapper}>
+        <Image
+          source={{uri: 'https://facebook.github.io/react/logo-og.png'}}
+          style={{width: 400, height: 400}}
+        />
         <FlatList
           onEndReachedThreshold={0.5}
           data={data}
@@ -86,14 +88,7 @@ class PopulaTab extends PureComponent {
           }}
           refreshing={isLoading}
           keyExtractor={item => `${item.id}`}
-          ListFooterComponent={() => this.genIndicator()}
-          onRefresh={
-            <RefreshControl
-              title={'Loading'}
-              refreshing={isLoading}
-              onRefresh={this.onRefresh}
-            />
-          }
+          // ListFooterComponent={() => this.genIndicator()}
           onEndReached={() => {
             console.log('---onEndReached----');
             // setTimeout(() => {
@@ -143,4 +138,10 @@ const mapStateToProps = state => ({
   isLoading: state.loading.effects.github.fetchPopular,
 });
 
-export default connect(mapStateToProps)(PopulaTab);
+const mapDispatchToProps = dispatch => ({
+  fetchPopular: dispatch.github.fetchPopular,
+});
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(PopulaTab);

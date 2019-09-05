@@ -1,4 +1,4 @@
-import React, {PureComponent} from 'react';
+import React from 'react';
 import {BackHandler} from 'react-native';
 import {connect} from 'react-redux';
 import {

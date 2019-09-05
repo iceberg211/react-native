@@ -15,7 +15,7 @@ const persistPlugin = createRematchPersist({
   version: 1,
 });
 
-const loadingPlugin = createLoadingPlugin({});
+const loadingPlugin = createLoadingPlugin();
 
 const initializeStore = (initialState = {}) => {
   return init({

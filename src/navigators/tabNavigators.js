@@ -20,7 +20,6 @@ const TabNavigator = createAppContainer(
         screen: HomeScreen,
         navigationOptions: {
           tabBarLabel: '主页',
-          header: null,
           tabBarIcon: CustomTabBarIcon('home', 22),
         },
       },
